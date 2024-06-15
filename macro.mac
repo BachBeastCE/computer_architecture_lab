@@ -1,0 +1,33 @@
+.macro puts(%str_var)
+	la $a0, %str_var
+	addi $v0,$zero,4
+	syscall
+.end_macro
+
+#Nhap so nguyen co nhac
+.macro get_i_p(%promt,%int_var)
+	puts %promt
+	addi $v0,$zero,5
+	syscall
+	sw $v0,%int_var
+.end_macro
+
+
+#Xuat so nguyen co nhac
+.macro put_i_p(%promt,%int_var)
+	puts %promt
+	lw $a0, %int_var
+	addi $v0,$zero,1
+	syscall
+.end_macro
+
+.macro put_char(%ascii_code)
+	addi $a0,$zero, %ascii_code
+	addi $v0,$zero,11
+	syscall
+.end_macro
+
+.macro endl(%ascii_code)
+	put_char(%ascii_code)
+.end_macro
+.
